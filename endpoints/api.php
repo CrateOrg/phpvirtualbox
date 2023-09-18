@@ -116,7 +116,6 @@ try {
 		 */
 		case 'login':
 
-
 			// NOTE: Do not break. Fall through to 'getSession
 			if(!$request['params']['u'] || !$request['params']['p']) {
 				break;

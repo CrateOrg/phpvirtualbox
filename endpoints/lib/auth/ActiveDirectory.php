@@ -24,7 +24,7 @@ class phpvbAuthActiveDirectory implements phpvbAuth {
 	 * Constructor
 	 * @param array $userConfig - user configuration for this module
 	 */
-	function phpvbAuthActiveDirectory($userConfig = null) {
+	function __construct($userConfig = null) {
 		// Merge user config
 		if($userConfig) {
 			$this->config = array_merge($this->config,$userConfig);
@@ -40,7 +40,6 @@ class phpvbAuthActiveDirectory implements phpvbAuth {
 	function login($username, $password)
 	{
 		global $_SESSION;
-
 
 		/*
 		 * Check for LDAP functionality and provide some direction
@@ -77,7 +76,6 @@ class phpvbAuthActiveDirectory implements phpvbAuth {
 
 		// Set relevant LDAP options
 		ldap_set_option($auth,LDAP_OPT_PROTOCOL_VERSION, 3);
-		
 
 		// Main login /bind
 		if(!($bind = @ldap_bind($auth, $username . "@" .$this->config['domain'], $password))) {
@@ -96,12 +94,11 @@ class phpvbAuthActiveDirectory implements phpvbAuth {
 		if($this->config['filter'] && false) {
 			$filter = '(&'. $this->config['filter'] .' ('. $filter .'))';
 		}
-		
 		$result = @ldap_search($auth,
 				$this->config['container'] . ',DC=' . join(',DC=', explode('.', $this->config['domain'])),
 				$filter, array("memberof","useraccountcontrol"));
 
-		if(!result) throw new Exception ("Unable to search Active Directory server: " . ldap_error($auth));
+		if(!$result) throw new Exception ("Unable to search Active Directory server: " . ldap_error($auth));
 		@list($entries) = @ldap_get_entries($auth, $result);
 		@ldap_unbind($auth);
 		if(!$entries) {
