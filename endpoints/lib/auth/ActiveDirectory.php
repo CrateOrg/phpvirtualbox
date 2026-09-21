@@ -71,7 +71,7 @@ class phpvbAuthActiveDirectory implements phpvbAuth {
 
 		// Connect to server
 		if(!($auth = ldap_connect($this->config['host']))) {
-			throw new Exception('Active Directory error ('.ldap_errno($auth).') ' . ldap_error($auth));
+			throw new Exception('Active Directory error: unable to connect to LDAP server ' . $this->config['host']);
 		}
 
 		// Set relevant LDAP options

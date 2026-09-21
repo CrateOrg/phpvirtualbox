@@ -18,7 +18,7 @@ class phpvbAuthLDAP implements phpvbAuth {
 		'adminUser' => ''
 	);
 	
-	function phpvbAuthLDAP($userConfig = null) {
+	function __construct($userConfig = null) {
 		if($userConfig) $this->config = array_merge($this->config,$userConfig);
 	}
 	

@@ -19,7 +19,7 @@ html,body,#vboxPane {
 #vboxPane { padding-left: 4px;  padding-right: 4px;}
 
 html,body,input,select,.ui-widget, .ui-tabs, .ui-widget-content,textarea {
-	  font: 12px Tahoma,"Trebuchet MS",Verdana,Arial,Sans-serif;
+	  font: 12px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 
 /* 
